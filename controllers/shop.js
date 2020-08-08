@@ -25,7 +25,7 @@ exports.getProduct = (req, res, next) => {
   //     });
   //   })
   //   .catch(err => console.log(err));
-  Product.findById(prodId)
+  Product.findByPk(prodId)
     .then(product => {
       res.render('shop/product-detail', {
         product: product,
@@ -76,7 +76,11 @@ exports.postCart = (req, res, next) => {
     .getCart()
     .then(cart => {
       fetchedCart = cart;
-      return cart.getProducts({ where: { id: prodId } });
+      return cart.getProducts({
+        where: {
+          id: prodId
+        }
+      });
     })
     .then(products => {
       let product;
@@ -89,11 +93,13 @@ exports.postCart = (req, res, next) => {
         newQuantity = oldQuantity + 1;
         return product;
       }
-      return Product.findById(prodId);
+      return Product.findByPk(prodId);
     })
     .then(product => {
       return fetchedCart.addProduct(product, {
-        through: { quantity: newQuantity }
+        through: {
+          quantity: newQuantity
+        }
       });
     })
     .then(() => {
@@ -107,7 +113,11 @@ exports.postCartDeleteProduct = (req, res, next) => {
   req.user
     .getCart()
     .then(cart => {
-      return cart.getProducts({ where: { id: prodId } });
+      return cart.getProducts({
+        where: {
+          id: prodId
+        }
+      });
     })
     .then(products => {
       const product = products[0];
@@ -133,7 +143,9 @@ exports.postOrder = (req, res, next) => {
         .then(order => {
           return order.addProducts(
             products.map(product => {
-              product.orderItem = { quantity: product.cartItem.quantity };
+              product.orderItem = {
+                quantity: product.cartItem.quantity
+              };
               return product;
             })
           );
@@ -151,7 +163,9 @@ exports.postOrder = (req, res, next) => {
 
 exports.getOrders = (req, res, next) => {
   req.user
-    .getOrders({include: ['products']})
+    .getOrders({
+      include: ['products']
+    })
     .then(orders => {
       res.render('shop/orders', {
         path: '/orders',
