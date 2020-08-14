@@ -1,10 +1,14 @@
 const Sequelize = require('sequelize');
 require('dotenv').config();
 var sequelize;
+const JAWSDB =
+  'mysql://xq41muiqops11r29:s5fz7x2t9iz1zd6c@rnr56s6e2uk326pj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com:3306/qfooekrkvoba9t8x';
 console.log(process.env.JAWSDB_URL);
 if (process.env.JAWSDB_URL) {
   console.log('11111111111111111111111111111');
-  sequelize = new Sequelize(process.env.JAWSDB_URL);
+} else if (JAWSDB) {
+  console.log('workwoekosjsbsdhfkjbjsgvfjvjEfvjfdvadvjfdahbfdkjh');
+  sequelize = new Sequelize(process.env.JAWSDB);
 } else {
   console.log('1111111111111111111111111111188888888888888888');
   sequelize = new Sequelize('shop_app', 'root', 'password', {
