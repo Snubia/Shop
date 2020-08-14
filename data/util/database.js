@@ -9,12 +9,12 @@ if (process.env.JAWSDB_URL) {
 } else if (JAWSDB) {
   console.log('workwoekosjsbsdhfkjbjsgvfjvjEfvjfdvadvjfdahbfdkjh');
   sequelize = new Sequelize({
-    host: 'rnr56s6e2uk326pj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
-    user: 'xq41muiqops11r29',
-    password: 's5fz7x2t9iz1zd6c',
-    database: 'qfooekrkvoba9t8x',
     dialect: 'mysql',
-    port: '3306',
+    Host: 'rnr56s6e2uk326pj.cbetxkdyhwsb.us-east-1.rds.amazonaws.com',
+    Username: 'xq41muiqops11r29',
+    Password: 's5fz7x2t9iz1zd6c',
+    Database: 'qfooekrkvoba9t8x',
+    Port: '3306',
   });
 } else {
   console.log('1111111111111111111111111111188888888888888888');
